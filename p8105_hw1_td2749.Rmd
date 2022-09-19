@@ -5,26 +5,55 @@ date: "2022-09-19"
 output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+Loading the required packages:
+```{r Loading required packages}
+library(tidyverse)
+library(ggplot2)
 ```
 
-## R Markdown
+## Problem 1
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r P1_installing_dataset, eval = FALSE}
+install.packages("palmerpenguins")
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+Loading the `penguins` dataset from the `palmerpenguins` package: 
+```{r P1_loading_dataset}
+data("penguins", package = "palmerpenguins")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r P1_calculating_values, include = FALSE}
+# Data in the dataset, including names / values of important variables
+colnames(penguins)
+
+### NOTE TO SELF: Make a detailed description of the types, areas, means, etc. 
+
+# The size of the dataset (using nrow and ncol)
+nrow(penguins)
+ncol(penguins)
+dim(penguins)
+length(penguins)
+```
+```{r P1_dropping_na_rows_flipper_length, echo = FALSE}
+# Creating a new df with flipper length NA value rows deleted. 
+nonNA_flipperlength_df = drop_na(penguins, flipper_length_mm)
+
+# The mean flipper length
+mean_flipper_length = mean(nonNA_flipperlength_df$flipper_length_mm)
+```
+
+The given dataset consists of information regarding penguins from the years 2007-2009. It holds **`r nrow(penguins)` rows and `r ncol(penguins)` columns**. The columns contain data pertaining to `r colnames(penguins)`. 
+The mean flipper length recorded is `r mean(nonNA_flipperlength_df$flipper_length_mm)` mm (millimeters).
+
+NOTE: 2 rows from the `penguin` dataframe with NA values in the flipperlength column were omitted to perform the mean calculation. 
+
+```{r P1_scatterplot}
+# Make a scatterplot of flipper_length_mm (y) vs bill_length_mm (x); color points using the species variable 
+
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+
+```
+
+
+
+`r `
