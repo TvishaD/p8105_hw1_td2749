@@ -51,7 +51,7 @@ NOTE: 2 rows from the `penguin` dataframe with NA values in the flipperlength co
 # Make a scatterplot of flipper_length_mm (y) vs bill_length_mm (x); color points using the species variable 
 
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
-
+ggsave('P1_scatterplot-1.png')
 ```
 
 
