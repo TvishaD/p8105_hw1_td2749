@@ -6,7 +6,7 @@ output: github_document
 ---
 
 Loading the required packages:
-```{r Loading required packages}
+```{r Loading required packages, message = FALSE}
 library(tidyverse)
 library(ggplot2)
 ```
@@ -26,13 +26,9 @@ data("penguins", package = "palmerpenguins")
 # Data in the dataset, including names / values of important variables
 colnames(penguins)
 
-### NOTE TO SELF: Make a detailed description of the types, areas, means, etc. 
-
 # The size of the dataset (using nrow and ncol)
 nrow(penguins)
 ncol(penguins)
-dim(penguins)
-length(penguins)
 ```
 ```{r P1_dropping_na_rows_flipper_length, echo = FALSE}
 # Creating a new df with flipper length NA value rows deleted. 
@@ -42,16 +38,18 @@ nonNA_flipperlength_df = drop_na(penguins, flipper_length_mm)
 mean_flipper_length = mean(nonNA_flipperlength_df$flipper_length_mm)
 ```
 
-The given dataset consists of information regarding penguins from the years 2007-2009. It holds **`r nrow(penguins)` rows and `r ncol(penguins)` columns**. The columns contain data pertaining to `r colnames(penguins)`. 
-The mean flipper length recorded is `r mean(nonNA_flipperlength_df$flipper_length_mm)` mm (millimeters).
+_**Dataset Description**_
 
-NOTE: 2 rows from the `penguin` dataframe with NA values in the flipperlength column were omitted to perform the mean calculation. 
+The given dataset consists of information regarding penguins from the years 2007-2009. It holds **`r nrow(penguins)` rows and `r ncol(penguins)` columns**. The columns contain data pertaining to `r colnames(penguins)`. 
+The mean flipper length recorded is `r round(mean(nonNA_flipperlength_df$flipper_length_mm), digits = 2)` mm (millimeters).
+
+NOTE: 2 rows from the `penguin` dataframe with NA values in the flipperlength column were omitted to perform the mean calculation.
+
+_**Filpper Length Vs. Bill Length: Visualization Via Scatterplot**_
 
 ```{r P1_scatterplot}
-# Make a scatterplot of flipper_length_mm (y) vs bill_length_mm (x); color points using the species variable 
-
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
-ggsave('P1_scatterplot-1.png')
+ggsave('bill_vs_flipper_scatter.png')
 ```
 
 
