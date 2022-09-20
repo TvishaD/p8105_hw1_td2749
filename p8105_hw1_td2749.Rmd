@@ -5,7 +5,7 @@ date: "2022-09-19"
 output: github_document
 ---
 
-Loading the required packages:
+**Loading the required packages:**
 ```{r Loading required packages, message = FALSE}
 library(tidyverse)
 library(ggplot2)
@@ -40,7 +40,7 @@ mean_flipper_length = mean(nonNA_flipperlength_df$flipper_length_mm)
 
 _**Dataset Description**_
 
-The given dataset consists of information regarding penguins from the years 2007-2009. It holds **`r nrow(penguins)` rows and `r ncol(penguins)` columns**. The columns contain data pertaining to _'`r colnames(penguins)`'_. Recordings for bill length, bill depth, and flipper length are made in millimeters (mm). body_mass is recorded in grams (g). The species include _'`r unique(penguins$species)`'_ from the _'`r unique(penguins$island)`'_ islands. The mean flipper length recorded for the listed penguins is **`r round(mean(nonNA_flipperlength_df$flipper_length_mm), digits = 2)` mm** (millimeters). 
+The given dataset consists of information regarding penguins from the years 2007-2009. It holds **`r nrow(penguins)` rows and `r ncol(penguins)` columns**. The columns contain data pertaining to _'`r colnames(penguins)`'_. Data recordings for bill length, bill depth, and flipper length are made in millimeters (mm). body_mass is recorded in grams (g). The species include _'`r unique(penguins$species)`'_ from the _'`r unique(penguins$island)`'_ islands. The mean flipper length recorded for the listed penguins is **`r round(mean(nonNA_flipperlength_df$flipper_length_mm), digits = 2)` mm** (millimeters). 
 
 NOTE: 2 rows from the `penguin` dataframe with NA values in the `flipper_length_mm` column were omitted to perform the above mean calculation.
 
@@ -54,4 +54,39 @@ ggsave('bill_vs_flipper_scatter.png')
 
 ## Problem 2
 
-`r `
+```{r P2_creating_df}
+df_2 = 
+  tibble(
+    norm_vec = rnorm(10),
+    log_vec = norm_vec > 0,
+    char_vec = c("I", "love", "listening", "to", "Seventeen", "NCT", "Treasure", "and", "BTS", "!"),
+    fac_vec = factor(c("NYC", "SD", "LA", "LA", "SD", "SD", "SD", "NYC", "NYC", "NYC"))
+  )
+```
+
+_**Taking means of each variable**_
+```{r P2_taking_means}
+#Mean of numerical values
+mean(pull(df_2, norm_vec))
+
+#Mean of logical values
+mean(pull(df_2, log_vec))
+
+#Mean of character values
+mean(pull(df_2, char_vec))
+
+#Mean of vector values
+mean(pull(df_2, fac_vec))
+```
+
+Based on the above results, it is possible to take means of numeric and logical values but not of character or factor values due to their non-numeric/non-logical nature. 
+
+```{r P2_as_numeric, eval = FALSE}
+log_num = as.numeric(df_2$log_vec)
+char_num = as.numeric(df_2$char_vec)
+fac_num = as.numeric(df_2$fac_vec)
+```
+
+# Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
+
+
