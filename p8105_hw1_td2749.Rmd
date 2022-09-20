@@ -40,10 +40,9 @@ mean_flipper_length = mean(nonNA_flipperlength_df$flipper_length_mm)
 
 _**Dataset Description**_
 
-The given dataset consists of information regarding penguins from the years 2007-2009. It holds **`r nrow(penguins)` rows and `r ncol(penguins)` columns**. The columns contain data pertaining to `r colnames(penguins)`. 
-The mean flipper length recorded is `r round(mean(nonNA_flipperlength_df$flipper_length_mm), digits = 2)` mm (millimeters).
+The given dataset consists of information regarding penguins from the years 2007-2009. It holds **`r nrow(penguins)` rows and `r ncol(penguins)` columns**. The columns contain data pertaining to _'`r colnames(penguins)`'_. Recordings for bill length, bill depth, and flipper length are made in millimeters (mm). body_mass is recorded in grams (g). The species include _'`r unique(penguins$species)`'_ from the _'`r unique(penguins$island)`'_ islands. The mean flipper length recorded for the listed penguins is **`r round(mean(nonNA_flipperlength_df$flipper_length_mm), digits = 2)` mm** (millimeters). 
 
-NOTE: 2 rows from the `penguin` dataframe with NA values in the flipperlength column were omitted to perform the mean calculation.
+NOTE: 2 rows from the `penguin` dataframe with NA values in the `flipper_length_mm` column were omitted to perform the above mean calculation.
 
 _**Filpper Length Vs. Bill Length: Visualization Via Scatterplot**_
 
@@ -53,5 +52,6 @@ ggsave('bill_vs_flipper_scatter.png')
 ```
 
 
+## Problem 2
 
 `r `
