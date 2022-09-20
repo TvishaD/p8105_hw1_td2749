@@ -79,7 +79,7 @@ mean(pull(df_2, char_vec))
 mean(pull(df_2, fac_vec))
 ```
 
-Based on the above results, it is possible to take means of numeric and logical values but not of character or factor values due to their non-numeric/non-logical nature. 
+Based on the above results, it is possible to take means of numeric and logical values but not of character or factor values. 
 
 ```{r P2_as_numeric, eval = FALSE}
 log_num = as.numeric(df_2$log_vec)
@@ -87,6 +87,4 @@ char_num = as.numeric(df_2$char_vec)
 fac_num = as.numeric(df_2$fac_vec)
 ```
 
-# Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
-
-
+Calling `as.numeric` on the logical values converts them into zeroes (FALSE) and ones (TRUE). This explains why it is possible to run the `mean` function on the logical vector. Character values on the other hand don't seem to be getting converted into numeric values. Calling `as.numeric` on them throws up a 'Warning Message' of _"NAs introduced by coercion"_. Character values not being able to be converted to numbers explains why it is not possible to call the `mean` function on a character vector. Upon being called with `as.numeric`, factor values are getting converted into numeric representations of the number of classes in the vector in context. As the numeric representation only seems to be functioning as some sort of identification aspect rather than actually converting the factor values into numbers, it makes sense that there is no possibility of calling their mean. From a reasoning perspective, calling the mean of a logical vector gives an indication of the proportion of TRUE and FALSE values present in it (as they are only 0s and 1s so a 0.7 mean recorded from a collection of 10 values indicates the presence of 7 TRUEs). However, there is not much that can be inferred from the mean calculated from the as.numeric converted factor values as they would widely differ based on the number of classes and values present and offer no specific information regarding the factor vector in reference. 
